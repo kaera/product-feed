@@ -34,7 +34,7 @@
 
 .editButton {
   position: absolute;
-  top: 18px;
+  top: 0;
   right: 0;
   width: 28px;
   opacity: 0.2;
