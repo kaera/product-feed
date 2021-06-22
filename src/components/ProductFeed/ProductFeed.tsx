@@ -1,6 +1,7 @@
 import styles from "./ProductFeed.module.css";
 import { useEffect, useState } from "react";
 import { Product } from "../../interfaces/app-interfaces";
+import { ReactComponent as EditButton } from "../../assets/edit-round-line.svg";
 
 export default function ProductFeed() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -27,6 +28,13 @@ export default function ProductFeed() {
               {product.image && <img src={product.image} alt={product.name} />}
               {product.description || "Description is empty"}
             </div>
+            <button
+              className={styles.editButton}
+              title="Edit"
+              onClick={() => {}}
+            >
+              <EditButton />
+            </button>
           </div>
         );
       })}

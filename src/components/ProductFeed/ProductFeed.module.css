@@ -31,3 +31,20 @@
 .Category {
   color: #666;
 }
+
+.editButton {
+  position: absolute;
+  top: 18px;
+  right: 0;
+  width: 28px;
+  opacity: 0.2;
+  transition: opacity 0.2s;
+  border: 0;
+  background: #fff;
+  padding-inline: 2px;
+  cursor: pointer;
+}
+
+.gridItem:hover .editButton {
+  opacity: 1;
+}
