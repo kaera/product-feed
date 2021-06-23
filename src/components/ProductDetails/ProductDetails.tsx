@@ -1,7 +1,7 @@
 import styles from "./ProductDetails.module.css";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Product } from "../../interfaces/app-interfaces";
 
 export default function ProductDetails(props: {
@@ -13,6 +13,15 @@ export default function ProductDetails(props: {
 }) {
   const [product, setProduct] = useState(props.product);
 
+  function handleImageChange(e: ChangeEvent<HTMLInputElement>) {
+    e.preventDefault();
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setProduct({ ...product, image: reader.result as string });
+    };
+    reader.readAsDataURL(e.target.files![0]);
+  }
+
   return (
     <Modal
       show={props.show}
@@ -20,7 +29,7 @@ export default function ProductDetails(props: {
       backdrop="static"
       size="lg"
       centered
-      data-testid="ProductDetails"
+      data-testid="ProductDetail"
     >
       <Modal.Header closeButton>
         <Modal.Title>Product details</Modal.Title>
@@ -57,6 +66,18 @@ export default function ProductDetails(props: {
               setProduct({ ...product, description: e.target.value })
             }
           />
+          <label>Product image:</label>
+          <div>
+            <input type="file" onChange={handleImageChange} />
+            <br />
+            {product.image && (
+              <img
+                className={styles.imagePreview}
+                src={product.image}
+                alt={product.name}
+              />
+            )}
+          </div>
         </form>
       </Modal.Body>
       <Modal.Footer>

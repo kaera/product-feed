@@ -3,3 +3,7 @@
   grid-template-columns: 170px auto;
   row-gap: 10px;
 }
+
+.imagePreview {
+  max-height: 200px;
+}
